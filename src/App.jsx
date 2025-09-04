@@ -3,22 +3,22 @@ import { useState } from "react";
 import Card from "./Card";
 
 function App() {
-  const [forecast, setForecast] = useState([]); // começa como array vazio
+  const [forecast, setForecast] = useState([]); 
   const [location, setLocation] = useState(null);
   const [search, setSearch] = useState("");
   const [error, setError] = useState(null);
 
   const handleSearch = () => {
-    if (!search.trim()) return; // evita buscar vazio
+    if (!search.trim()) return; 
 
     axios
       .get(
         `http://api.weatherapi.com/v1/forecast.json?key=e296cfcd560f4c4fbf403352250209&q=${search}&days=7`
       )
       .then((res) => {
-        setForecast(res.data.forecast.forecastday); // pega só o array
-        setLocation(res.data.location); // guarda a cidade
-        setError(null); // limpa erro anterior
+        setForecast(res.data.forecast.forecastday); 
+        setLocation(res.data.location); 
+        setError(null); 
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -50,7 +50,7 @@ function App() {
         </button>
       </div>
 
-      {/* Mensagens de erro ou localização */}
+    
       {error && <p className="text-red-500 text-center">{error}</p>}
       {location && !error && (
         <h2 className="text-center font-bold text-xl mb-4">
